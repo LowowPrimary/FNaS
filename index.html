@@ -751,14 +751,14 @@
     </div>
 
     <audio id="menuMusic" src="./SFX/Other/fnafsong.mp3"></audio>
-    <audio id="menuMusic2" src="./SFX/Ambience/menumusic.ogg"></audio>
+    <audio loop id="menuMusic2" src="./SFX/Ambience/menumusic.ogg"></audio>
     <audio id="jumpscareAudio" src="./SFX/Animatronics/jumpscare.mp3"></audio>
     <audio id="gameOverMusic" src="./SFX/Other/horhorhorhorhorhorhorhorhorhor.mp3"></audio>
     <audio loop id="jukebox" src="./SFX/Animatronics/jukebox.mp3"></audio>
     <audio loop id="fanAudio" src="./SFX/Ambience/fan.wav"></audio>
     <audio loop id="kitchenAudio" src="./SFX/Animatronics/kitchenrattling.wav"></audio>
     <audio loop id="gameplayMusic" src="./SFX/Ambience/gameplayMusic.wav"></audio>
-    <audio id="lightsOn" src="./SFX/Player/lightson.ogg"></audio>
+    <audio loop id="lightsOn" src="./SFX/Player/lightson.ogg"></audio>
 
     <p style="display: none; background-color: white; z-index: 10000000; position: absolute; top: 0; left: 0;" id="info">AHHH</p>
 
@@ -1565,12 +1565,15 @@ glowyEyes.style.display = "done";
         const sfxDir = "./SFX/";
 
         function cancelAllAudio() {
-            /*
+            
             const audios = document.querySelectorAll("audio");
-            audios.forEach(audio => {
-                audio.pause();
+            audios.forEach(a => {
+                if (!a.paused) {
+                    a.pause();
+                    a.currentTime = 0;
+                }
             });
-            */
+            
            Object.values(allAudio).forEach(a => {
                 if (!a.paused) {
                     a.pause();
