@@ -2,7 +2,7 @@
   "name": "Five Nights at Spuddy's",
   "short_name": "FNaS",
   "description": "Where fantasy and fun come to life...",
-  "start_url": "/",
+  "start_url": "https://lowowprimary.github.io/FNaS",
   "id": "/",
   "display": "fullscreen",
   "background_color": "black",
