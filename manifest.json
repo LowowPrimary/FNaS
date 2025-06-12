@@ -1,0 +1,49 @@
+{
+  "name": "Five Nights at Spuddy's",
+  "short_name": "FNaS",
+  "description": "Where fantasy and fun come to life...",
+  "start_url": "/",
+  "id": "/",
+  "display": "fullscreen",
+  "background_color": "black",
+  "theme_color": "black",
+  "icons": [
+    {
+      "src": "./favicon/favicon.ico",
+      "type": "image/png",
+      "sizes": "48x48"
+    },
+    {
+      "src": "./favicon/512x512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    },
+    {
+      "src": "./favicon/192x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "./favicon/screenshot0.png",
+      "sizes": "815x837",
+      "type": "image/png",
+      "label": "Logo"
+    },
+    {
+      "src": "./favicon/screenshot1.png",
+      "sizes": "1919x1079",
+      "type": "image/png",
+      "label": "Title Screen",
+      "form_factor": "wide"
+    },
+    {
+      "src": "./favicon/screenshot2.png",
+      "sizes": "1919x1079",
+      "type": "image/png",
+      "label": "Gameplay",
+      "form_factor": "wide"
+    }
+  ]
+}
