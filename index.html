@@ -784,7 +784,7 @@
         <p id="Night">Night 1</p>
     </div>
     <div id="bottomLeft">
-        <p>Power left: <span id="PowerLevel" style="font-size: 150%;">100%</span></p>
+        <p>Power left: <span id="PowerLevel">100%</span></p>
         <div style="display: flex; flex-direction: row;">
             <p>Usage: </p>
             <div id="batteryImage"></div>
@@ -993,9 +993,17 @@
                     nextBtn.classList.add("nextBtn");
                     nextBtn.addEventListener("click", function() {
                         agroSelection.style.display = "none";
+                        let is1987 = "";
                         for (let i=0; i<agroLevelsPs.length; i++) {
                             customAgro.push(agroLevelsPs[i].textContent);
+                            is1987 += agroLevelsPs[i].textContent;
                         }
+                        if (is1987 == "1987") {
+                            creepySpudHallucinate();
+                            return;
+                        }
+
+
 
                         RealMenu.style.opacity = "0";
                         setTimeout(function () {
@@ -2463,9 +2471,21 @@ Night	Freddy	Bonnie	Chica	Foxy
                                 cameraImage.src = "./Cameras/C4A5.png";
                             }
                             flippyCharging = true;
+
                             flippyChargeTimeout = setTimeout(function() {
-                                flippyCharging = false;
-                                jumpscare("FlippyDoo");
+                                if (isDoorClosed[0]) {
+                                    playAudio("flippyknockingondoor.ogg");
+                                    battery -= 1 + (timesFoxyBlocked * 5)
+                                    timesFoxyBlocked++;
+                                    
+                                    setTimeout(function() {
+                                        // as long as < 4
+                                        entities["FlippyDoo"]["CurrentStage"] = Math.floor(Math.random() * 4);
+                                    }, 3000);
+                                } else {
+                                    flippyCharging = false;
+                                    jumpscare("FlippyDoo");
+                                }
                             }, 25000);
                         }
                     } else {
@@ -2987,17 +3007,13 @@ Night	Freddy	Bonnie	Chica	Foxy
 
 
         if (cheatsEnabled) {
-            document.addEventListener("keydown", function() {
-                if (event.key == "3") {
-                    drawingFlippyRun = true;
-                }
-            });
             let inputVisible = true;
             let input = document.createElement("input");
             input.style.zIndex = 1000;
             input.style.position = "absolute";
             input.style.backgroundColor = "white";
             input.style.opacity = "0";
+            input.style.pointerEvents = "none";
             input.addEventListener("keydown", function(event) {
                 if (event.key == "Enter") {
                     let value = input.value;
