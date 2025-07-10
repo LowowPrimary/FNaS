@@ -1317,6 +1317,7 @@
         let lightVisible = false;
 
         let drawingFlippyRun = false;
+	let flippyRunFrameCorrection = 0;
         let flippyRunIteration = 0;
         
         const flippyRunCanvas = document.getElementById("flippyRunAnimation");
@@ -1334,15 +1335,19 @@
             }
             
             if (drawingFlippyRun) {
-                flippyRunCTX.clearRect(0, 0, screenWidth, screenHeight);
-                flippyRunCTX.drawImage(jumpscareImages["FlippyRun"][flippyRunIteration], 0, 0, screenWidth, screenHeight);
-
-                flippyRunIteration++;
-                if (flippyRunIteration > 23) {
-                    flippyRunIteration = 0;
-                    drawingFlippyRun = false;
-                    flippyRunCTX.clearRect(0, 0, screenWidth, screenHeight);
-                }
+		flippyRunFrameCorrection++;
+		if (flippyRunFrameCorrection > currentFramerate/24) {
+			flippyRunFrameCorrection = 0;
+                	flippyRunCTX.clearRect(0, 0, screenWidth, screenHeight);
+                	flippyRunCTX.drawImage(jumpscareImages["FlippyRun"][flippyRunIteration], 0, 0, screenWidth, screenHeight);
+			
+                	flippyRunIteration++;
+                	if (flippyRunIteration > 23) {
+                    		flippyRunIteration = 0;
+                    		drawingFlippyRun = false;
+                    		flippyRunCTX.clearRect(0, 0, screenWidth, screenHeight);
+                	}
+		}
             } /*else {
                 flippyRunCTX.clearRect(0, 0, screenWidth, screenHeight);
                 flippyRunCTX.fillStyle = `rgba(200, 200, 200, .3)`;
